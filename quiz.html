@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50 min-h-screen flex flex-col">
+
+    <header class="bg-blue-600 text-white p-4 text-center shadow">
+        <h1 class="text-3xl font-bold">Quiz Application</h1>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center px-4">
+
+        <section class="bg-white shadow-lg rounded-xl p-8 w-full max-w-lg">
+
+            <!-- User + Timer -->
+            <div class="flex justify-between items-center mb-4">
+
+                <p class="text-gray-700">
+                    👤 <span id="usernameDisplay"></span>
+                </p>
+
+                <p class="text-red-500 font-semibold">
+                    ⏱ <span id="timer">30</span>s
+                </p>
+
+            </div>
+
+            <!-- Progress -->
+            <div class="mb-4">
+
+                <p class="text-sm text-gray-600 mb-1">
+                    Question <span id="currentQuestion">1</span>/<span id="totalQuestions">3</span>
+                </p>
+
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div id="progressBar" class="bg-blue-500 h-2 rounded-full" style="width:0%">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Question -->
+            <h2 id="question" class="text-xl font-bold mb-6"></h2>
+
+            <!-- Options -->
+            <div class="space-y-3">
+
+                <button id="opt0" class="option w-full bg-gray-200 p-3 rounded hover:bg-gray-300"
+                    onclick="selectAnswer(0)">
+                </button>
+
+                <button id="opt1" class="option w-full bg-gray-200 p-3 rounded hover:bg-gray-300"
+                    onclick="selectAnswer(1)">
+                </button>
+
+                <button id="opt2" class="option w-full bg-gray-200 p-3 rounded hover:bg-gray-300"
+                    onclick="selectAnswer(2)">
+                </button>
+
+                <button id="opt3" class="option w-full bg-gray-200 p-3 rounded hover:bg-gray-300"
+                    onclick="selectAnswer(3)">
+                </button>
+
+            </div>
+
+            <button onclick="nextQuestion()"
+                class="mt-6 w-full bg-blue-500 text-white py-3 rounded hover:bg-blue-600 transition">
+                Next Question
+            </button>
+
+        </section>
+
+    </main>
+
+    <footer class="text-center p-3 text-gray-500">
+        <p>© 2026 Quiz App</p>
+    </footer>
+
+    <script src="js/quiz.js"></script>
+
+    <script>
+
+        /* Show username */
+
+        const name = localStorage.getItem("username");
+
+        if (name) {
+            document.getElementById("usernameDisplay").innerText = name;
+        }
+
+        /* Timer */
+
+        let time = 30;
+
+        setInterval(() => {
+
+            if (time > 0) {
+                time--;
+                document.getElementById("timer").innerText = time;
+            }
+
+        }, 1000);
+
+    </script>
+
+</body>
+
+</html>
